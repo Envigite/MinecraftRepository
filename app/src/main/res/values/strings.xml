@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Minecraft Repository</string>
+
+    <string name="error_message">An error has occurred</string>
+    <string name="minecraft_items_path">items</string>
+
+    <string name="minecraft_title">MINECRAFT</string>
+</resources>
+

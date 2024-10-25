@@ -5,5 +5,7 @@
     <string name="minecraft_items_path">items</string>
 
     <string name="minecraft_title">MINECRAFT</string>
+
+    <string name="search_items">Search items</string>
 </resources>
 

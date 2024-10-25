@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:scrollbarStyle">outsideInset</item>
+        <item name="android:scrollbarSize">8dp</item>
+        <item name="android:scrollbarThumbVertical">@drawable/ic_thumb</item>
+        <item name="android:scrollbarTrackVertical">@drawable/ic_track</item>
+    </style>
+</resources>

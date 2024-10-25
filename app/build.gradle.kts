@@ -53,14 +53,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     dependencies {
-        implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
-        implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
-        implementation("com.squareup.retrofit2:retrofit:2.11.0")
-        implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-        implementation("com.google.dagger:hilt-android:2.52")
-        kapt("com.google.dagger:hilt-compiler:2.52")
-        implementation("com.squareup.picasso:picasso:2.8")
+        implementation(libs.androidx.lifecycle.viewmodel.ktx)
+        implementation(libs.androidx.lifecycle.livedata.ktx)
+        implementation(libs.retrofit)
+        implementation(libs.converter.gson)
+        implementation(libs.kotlinx.coroutines.core)
+        implementation(libs.hilt.android)
+        kapt(libs.hilt.compiler)
+        implementation(libs.picasso)
     }
 
 }

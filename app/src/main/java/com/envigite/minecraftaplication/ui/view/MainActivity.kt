@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.envigite.minecraftaplication.R
 import com.envigite.minecraftaplication.databinding.ActivityMainBinding
 import com.envigite.minecraftaplication.ui.adapter.ItemAdapter
@@ -37,32 +37,42 @@ class MainActivity : AppCompatActivity() {
         initUI()
     }
 
-    //Configura la interfaz de usuario.
     private fun initUI() {
         initAdapter()
         initViewModel()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        setupBack()
         setupSearchView()
+    }
+
+    private fun setupBack() {
+        binding.ivTitleMinecraft.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupSearchView() {
         binding.svItems.setOnQueryTextFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.rvMinecraft.visibility = View.VISIBLE // Muestra el RecyclerView cuando el SearchView tiene foco
-                itemAdapter.filter(null) // Muestra toda la lista cuando no hay filtro
+                binding.rvMinecraft.visibility = View.VISIBLE
+                itemAdapter.filter(null)
             }
         }
 
         binding.svItems.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                binding.svItems.clearFocus() // Cierra el teclado cuando se hace submit
+                binding.svItems.clearFocus()
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    itemAdapter.filter(null) // Muestra toda la lista si no hay texto en el SearchView
+                    itemAdapter.filter(null)
                 } else {
-                    itemAdapter.filter(newText) // Aplica el filtro al cambiar el texto
+                    itemAdapter.filter(newText)
                 }
                 return true
             }
@@ -79,9 +89,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //Inicializa el ViewModel y su observador.
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
+        viewModel = ViewModelProvider(this)[ItemViewModel::class.java]
         viewModel.itemsLiveData.observe(this) { items ->
             itemAdapter.updateItems(items)
         }
@@ -91,13 +100,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         val itemsPath = getString(R.string.minecraft_items_path)
-        viewModel.fetchItems(itemsPath) //Llama al método fetchItems() en el ViewModel, que inicia el proceso de obtención de datos desde el repositorio.
+        viewModel.fetchItems(itemsPath)
     }
 
-    //Inicializa el adapter del RecyclerView
     private fun initAdapter() {
-        itemAdapter = ItemAdapter(emptyList()) //Crea una nueva instancia de ItemAdapter, inicializándola con una lista vacía.
-        binding.rvMinecraft.adapter = itemAdapter //Asocia el ItemAdapter al RecyclerView. Esto permite que el RecyclerView muestre los elementos del adaptador.
-        binding.rvMinecraft.layoutManager = LinearLayoutManager(this) //Configura el LayoutManager del RecyclerView. En este caso, se utiliza LinearLayoutManager, que organiza los elementos en una lista vertical.
+        itemAdapter = ItemAdapter(emptyList())
+        binding.rvMinecraft.adapter = itemAdapter
+        binding.rvMinecraft.layoutManager = GridLayoutManager(this, 2)
     }
 }

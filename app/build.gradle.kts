@@ -11,6 +11,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        buildConfigField("String", "API_BASE_URL", "\"https://minecraft-api.vercel.app/api/\"")
         applicationId = "com.envigite.minecraftaplication"
         minSdk = 24
         targetSdk = 34
@@ -38,6 +39,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -48,6 +50,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.swiperefreshlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,6 +64,7 @@ dependencies {
         implementation(libs.hilt.android)
         kapt(libs.hilt.compiler)
         implementation(libs.picasso)
+        implementation("io.github.l4digital:fastscroll:2.1.0")
+        implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     }
-
 }

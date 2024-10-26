@@ -9,20 +9,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel //Indica que esta clase es un ViewModel que será gestionado por Hilt.
+@HiltViewModel
 class ItemViewModel @Inject constructor(
     private val repository: ItemRepository
 ) : ViewModel() {
 
-    val itemsLiveData = MutableLiveData<List<ItemMinecraft>>() //Es un tipo de dato que puede ser observado. Permite a la UI reaccionar automáticamente a los cambios en la lista de ItemMinecraft.
-    private var allItems: List<ItemMinecraft> = listOf() //Lista completa
+    val itemsLiveData = MutableLiveData<List<ItemMinecraft>>()
+    private var allItems: List<ItemMinecraft> = emptyList()
     val errorLiveData = MutableLiveData<String>()
 
-    fun fetchItems(items: String) { //Este método se llama para obtener los elementos de Minecraft desde el repositorio.
-        viewModelScope.launch {//Esto permite realizar operaciones asincrónicas.
+    fun fetchItems(items: String) {
+        viewModelScope.launch {
             try {
-                allItems = repository.getMinecraftItems(items) // Llama al método del repositorio que obtiene la lista de elementos de Minecraft.
-                itemsLiveData.postValue(allItems) //Actualiza itemsLiveData con la lista de elementos obtenida. Esto notifica a los observadores (como la UI) que hay nuevos datos disponibles.
+                allItems = repository.getMinecraftItems(items)
+                itemsLiveData.postValue(allItems)
             } catch (e: Exception) {
                 errorLiveData.postValue("Error al cargar los datos: ${e.message}")
             }

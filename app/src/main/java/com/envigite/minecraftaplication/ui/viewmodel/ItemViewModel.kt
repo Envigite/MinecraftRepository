@@ -1,5 +1,6 @@
 package com.envigite.minecraftaplication.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,7 +25,8 @@ class ItemViewModel @Inject constructor(
                 allItems = repository.getMinecraftItems(items)
                 itemsLiveData.postValue(allItems)
             } catch (e: Exception) {
-                errorLiveData.postValue("Error al cargar los datos: ${e.message}")
+                Log.e("ItemViewModel", "Error fetching items: ${e.message}")
+                errorLiveData.postValue("Error fetching items: ${e.message}")
             }
         }
     }

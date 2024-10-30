@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_temporal"
+    android:background="@drawable/animated_background"
     tools:context=".ui.view.MainActivity">
 
     <FrameLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +20,8 @@
             android:id="@+id/ivTitleMinecraft"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginVertical="16dp"
+            android:contentDescription="@string/title_image"
             android:gravity="center"
             android:src="@drawable/ic_minecraft_title" />
     </FrameLayout>
@@ -29,30 +30,24 @@
         android:id="@+id/svItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/ic_fondo_search"
+        android:closeIcon="@drawable/ic_close"
         android:iconifiedByDefault="false"
         android:queryHint="@string/search_items"
+        android:searchIcon="@drawable/ic_search"
+        android:theme="@style/CustomSearchView"
         app:layout_constraintBottom_toTopOf="@+id/rvMinecraft"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvNoResults"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:text="No se encontraron resultados"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <com.l4digital.fastscroll.FastScrollRecyclerView
         android:id="@+id/rvMinecraft"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:fadeScrollbars="false"
         android:scrollbarStyle="outsideInset"
         android:scrollbars="vertical"
@@ -79,6 +74,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/svItems" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

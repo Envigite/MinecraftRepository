@@ -9,12 +9,7 @@ class ItemRepository @Inject constructor(
     private val apiService: MinecraftApiService
 ) {
     suspend fun getMinecraftItems(items: String): List<ItemMinecraft> {
-        return try {
-            val responseItems = apiService.getMinecraftItems(items)
-            responseItems.map { it.toDomain() }
-        } catch (e: Exception) {
-            Log.e("ItemRepository", "Error fetching items: ${e.message}", e)
-            emptyList()
-        }
+        val responseItems = apiService.getMinecraftItems(items)
+        return responseItems.map { it.toDomain() }
     }
 }

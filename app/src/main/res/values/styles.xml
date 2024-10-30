@@ -6,4 +6,21 @@
         <item name="android:scrollbarThumbVertical">@drawable/ic_thumb</item>
         <item name="android:scrollbarTrackVertical">@drawable/ic_track</item>
     </style>
+    <style name="CustomSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColorHint">#989898</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:fontFamily">@font/minecraft_font</item>
+    </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#628C32</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="postSplashScreenTheme">@style/AppTheme</item>
+    </style>
+
+    <style name="TransparentBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@android:color/transparent</item>
+    </style>
+
 </resources>

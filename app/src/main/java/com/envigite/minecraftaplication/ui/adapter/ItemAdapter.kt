@@ -2,13 +2,14 @@ package com.envigite.minecraftaplication.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.envigite.minecraftaplication.databinding.ItemMinecraftBinding
 import com.envigite.minecraftaplication.domain.model.ItemMinecraft
 import com.l4digital.fastscroll.FastScroller
 
-class ItemAdapter(private var itemsMinecraft: List<ItemMinecraft>) :
+class ItemAdapter(private var itemsMinecraft: List<ItemMinecraft>, private val fragmentManager: FragmentManager) :
     RecyclerView.Adapter<ItemViewHolder>(), FastScroller.SectionIndexer {
 
     private var fullItemList: List<ItemMinecraft> = itemsMinecraft
@@ -21,7 +22,7 @@ class ItemAdapter(private var itemsMinecraft: List<ItemMinecraft>) :
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = itemsMinecraft[position]
-        holder.render(item)
+        holder.render(item, fragmentManager)
     }
 
     override fun getItemCount() = itemsMinecraft.size

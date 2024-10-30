@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/fondo_e"
+        android:duration="10000" />
+    <item
+        android:drawable="@drawable/fondo_d"
+        android:duration="10000" />
+    <item
+        android:drawable="@drawable/fondo_c"
+        android:duration="10000" />
+    <item
+        android:drawable="@drawable/fondo_b"
+        android:duration="10000" />
+    <item
+        android:drawable="@drawable/fondo_a"
+        android:duration="10000" />
+</animation-list>

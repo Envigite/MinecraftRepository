@@ -51,6 +51,9 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.androidx.preference)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,5 +69,6 @@ dependencies {
         implementation(libs.picasso)
         implementation("io.github.l4digital:fastscroll:2.1.0")
         implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+        implementation("androidx.core:core-splashscreen:1.0.1")
     }
 }

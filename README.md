@@ -22,7 +22,7 @@
 🎬👀
 
 <div style="display: flex; gap: 10px;">
-    <img src="https://media.giphy.com/media/0VGF9A2XxZ6vzvTGZ1/giphy.gif" alt="GIF 1" width="45%">
-    <img src="https://media.giphy.com/media/SVxyxR5k0d2ejnUHea/giphy.gif" alt="GIF 2" width="45%">
-	<img src="https://media.giphy.com/media/R8T6ksID9FRpGa4MYr/giphy.gif" alt="GIF 2" width="45%">
+    <img src="https://media.giphy.com/media/0VGF9A2XxZ6vzvTGZ1/giphy.gif" alt="GIF 1" width="300" height="250">
+    <img src="https://media.giphy.com/media/SVxyxR5k0d2ejnUHea/giphy.gif" alt="GIF 2" width="300" height="250">
+	<img src="https://media.giphy.com/media/R8T6ksID9FRpGa4MYr/giphy.gif" alt="GIF 2" width="300" height="250">
 </div>

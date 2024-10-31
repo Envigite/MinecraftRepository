@@ -1,8 +1,9 @@
 <p align="center">
 	<img src="https://i.ibb.co/8NXSM1k/minecraft-title.png" alt="Título del Proyecto" width="600"/>
 </p>
-##Descripción
-☝🤓
+
+### Descripción☝🤓
+
 - Esta aplicación, desarrollada en Kotlin, integra datos en tiempo real desde una API REST de Minecraft. Los datos obtenidos se visualizan en un RecyclerView a través de un patrón de arquitectura limpia (MVVM), facilitando la organización del código y la mantenibilidad. El proyecto utiliza bibliotecas modernas como Retrofit para la conexión a la API y Dagger Hilt para la inyección de dependencias. Actualmente, se está desarrollando una nueva funcionalidad que permitirá almacenar datos en una base de datos local.
 
 ------------
@@ -18,11 +19,13 @@
 - **Control de Versiones con Git**: Proyecto versionado para asegurar un desarrollo organizado y colaborativo.
 
 ------------
-###SplashScreen y vista previa
-🎬👀
+### SplashScreen y vista previa🎬👀
 
-<div style="display: flex; gap: 10px;">
-    <img src="https://media.giphy.com/media/0VGF9A2XxZ6vzvTGZ1/giphy.gif" alt="GIF 1" width="200" height="400">
+<p align="center">
+    <img src="https://media.giphy.com/media/0VGF9A2XxZ6vzvTGZ1/giphy.gif" alt="GIF 1" width="200" height="400"> 
+    &nbsp; &nbsp;
     <img src="https://media.giphy.com/media/SVxyxR5k0d2ejnUHea/giphy.gif" alt="GIF 2" width="200" height="400">
-	<img src="https://media.giphy.com/media/R8T6ksID9FRpGa4MYr/giphy.gif" alt="GIF 2" width="200" height="400">
-</div>
+    &nbsp; &nbsp; 
+    <img src="https://media.giphy.com/media/R8T6ksID9FRpGa4MYr/giphy.gif" alt="GIF 3" width="200" height="400">
+</p>
+

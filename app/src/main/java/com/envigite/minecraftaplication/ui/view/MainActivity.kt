@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         binding.svItems.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (itemAdapter.itemCount == 0) {
-                    Toast.makeText(this@MainActivity, "No se encontraron resultados", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "No results found", Toast.LENGTH_SHORT).show()
                     clearFocus()
                 } else {
                     clearFocus()

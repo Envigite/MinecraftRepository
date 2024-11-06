@@ -101,19 +101,19 @@ class CraftingActivity : AppCompatActivity() {
     private fun promptForCraftingName() {
         val input = EditText(this)
         val dialog = AlertDialog.Builder(this)
-            .setTitle("Guardar crafteo")
-            .setMessage("Introduce un nombre para el crafteo:")
+            .setTitle("Save crafting")
+            .setMessage("Enter a name for the craft:")
             .setView(input)
-            .setPositiveButton("Guardar") { _, _ ->
+            .setPositiveButton("Save") { _, _ ->
                 val craftingName = input.text.toString()
                 if (craftingName.isNotBlank()) {
                     saveCrafting(craftingName)
                 } else {
-                    Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton("Cancel", null)
             .create()
         dialog.show()
     }
@@ -129,7 +129,7 @@ class CraftingActivity : AppCompatActivity() {
         )
 
         viewModel.saveCrafting(craftingEntity)
-        Toast.makeText(this, "Crafteo guardado", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Crafting Saved", Toast.LENGTH_SHORT).show()
 
         imageButtons.forEach { button ->
             button.setImageResource(0)
@@ -142,14 +142,14 @@ class CraftingActivity : AppCompatActivity() {
             if (craftingList.isNotEmpty()) {
                 val craftingNames = craftingList.map { it.name }
                 AlertDialog.Builder(this)
-                    .setTitle("Selecciona un crafteo a cargar")
+                    .setTitle("Select a craft to load")
                     .setItems(craftingNames.toTypedArray()) { _, which ->
                         loadCrafting(craftingList[which])
                     }
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton("Cancel", null)
                     .show()
             } else {
-                Toast.makeText(this, "No hay crafteos guardados", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "There are no saved crafts", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -172,20 +172,20 @@ class CraftingActivity : AppCompatActivity() {
             if (craftingList.isNotEmpty()) {
                 val craftingNames = craftingList.map { it.name }
                 AlertDialog.Builder(this)
-                    .setTitle("Selecciona un crafteo a borrar")
+                    .setTitle("Select a craft to delete")
                     .setItems(craftingNames.toTypedArray()) { _, which ->
                         val craftingToDelete = craftingList[which]
                         viewModel.deleteCrafting(craftingToDelete.id)
-                        Toast.makeText(this, "Crafteo eliminado", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Crafting removed", Toast.LENGTH_SHORT).show()
                         imageButtons.forEach { button ->
                             button.setImageResource(0)
                             button.tag = null
                         }
                     }
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton("Cancel", null)
                     .show()
             } else {
-                Toast.makeText(this, "No hay crafteos guardados", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "There are no saved crafts", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -218,7 +218,7 @@ class CraftingActivity : AppCompatActivity() {
                 if (itemAdapter.itemCount == 0) {
                     Toast.makeText(
                         this@CraftingActivity,
-                        "No se encontraron resultados",
+                        "No results found",
                         Toast.LENGTH_SHORT
                     ).show()
                     binding.svCraftingTable.clearFocus()

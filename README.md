@@ -16,6 +16,7 @@
 - **Inyección de Dependencias**: Implementación de Dagger Hilt para una gestión de dependencias eficiente y modular.
 - **Corrutinas de Kotlin**: Manejo de operaciones asíncronas con corrutinas para optimizar el rendimiento y la fluidez.
 - **Layouts Responsivos**: Diseño con ConstraintLayout para asegurar una experiencia de usuario adaptable a distintas resoluciones.
+- **Base de Datos Local con Room**: Implementación de una nueva Activity que conecta la aplicación con una base de datos local usando Room, permitiendo almacenar y gestionar datos de manera persistente.
 - **Control de Versiones con Git**: Proyecto versionado para asegurar un desarrollo organizado y colaborativo.
 
 ------------
@@ -27,5 +28,7 @@
     <img src="https://media.giphy.com/media/SVxyxR5k0d2ejnUHea/giphy.gif" alt="GIF 2" width="200" height="400">
     &nbsp; &nbsp; 
     <img src="https://media.giphy.com/media/R8T6ksID9FRpGa4MYr/giphy.gif" alt="GIF 3" width="200" height="400">
+    &nbsp; &nbsp;
+    <img src="https://media.giphy.com/media/EocSWguUt5Z1svlZft/giphy.gif" alt="GIF 3" width="200" height="400">
 </p>
 

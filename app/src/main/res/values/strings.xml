@@ -3,10 +3,15 @@
 
     <string name="error_message">An error has occurred</string>
     <string name="minecraft_items_path">items</string>
+    <string name="navigate">Navigation Button</string>
+    <string name="crafting">Image crafting Table</string>
 
     <string name="item_image">image Item Minecraft</string>
 
     <string name="minecraft_title">MINECRAFT</string>
+    <string name="save_button">Save</string>
+    <string name="load_button">Load</string>
+    <string name="delete_button">Delete</string>
 
     <string name="search_items">Search…</string>
     <!-- Preference Titles -->

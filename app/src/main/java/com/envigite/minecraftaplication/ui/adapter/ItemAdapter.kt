@@ -6,23 +6,49 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.envigite.minecraftaplication.databinding.ItemMinecraftBinding
+import com.envigite.minecraftaplication.databinding.ItemMinecraftCraftingBinding
 import com.envigite.minecraftaplication.domain.model.ItemMinecraft
 import com.l4digital.fastscroll.FastScroller
 
-class ItemAdapter(private var itemsMinecraft: List<ItemMinecraft>, private val fragmentManager: FragmentManager) :
-    RecyclerView.Adapter<ItemViewHolder>(), FastScroller.SectionIndexer {
+class ItemAdapter(
+    private var itemsMinecraft: List<ItemMinecraft>,
+    private val fragmentManager: FragmentManager,
+    private val viewType: Int
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), FastScroller.SectionIndexer {
 
     private var fullItemList: List<ItemMinecraft> = itemsMinecraft
+    private var onItemClickListener: ((String) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding =
-            ItemMinecraftBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ItemViewHolder(binding)
+    override fun getItemViewType(position: Int): Int {
+        return viewType
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_1 -> {
+                val binding =
+                    ItemMinecraftBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ItemViewHolder(binding)
+            }
+
+            VIEW_TYPE_2 -> {
+                val binding = ItemMinecraftCraftingBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false)
+                CraftingViewHolder(binding)
+            }
+
+            else -> throw IllegalArgumentException("Invalid view type")
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = itemsMinecraft[position]
-        holder.render(item, fragmentManager)
+        when (holder) {
+            is ItemViewHolder -> holder.render(item, fragmentManager)
+            is CraftingViewHolder -> holder.render(item) {
+                onItemClickListener?.invoke(it.image)
+            }
+        }
     }
 
     override fun getItemCount() = itemsMinecraft.size
@@ -52,5 +78,14 @@ class ItemAdapter(private var itemsMinecraft: List<ItemMinecraft>, private val f
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         itemsMinecraft = filteredList
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setOnClickListener(listener: (String) -> Unit) {
+        onItemClickListener = listener
+    }
+
+    companion object {
+        const val VIEW_TYPE_1 = 0
+        const val VIEW_TYPE_2 = 1
     }
 }

@@ -12,11 +12,15 @@ import com.squareup.picasso.Picasso
 class ItemViewHolder(private val binding: ItemMinecraftBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun render(item: ItemMinecraft, fragmentManager: FragmentManager) {
+    fun render(
+        item: ItemMinecraft,
+        fragmentManager: FragmentManager,
+    ) {
         binding.tvName.text = item.name
 
         Picasso.get()
             .load(item.image)
+            .resize(150, 150)
             .into(binding.ivImage, object : com.squareup.picasso.Callback {
                 override fun onSuccess() {
                     binding.pbItemMinecraft.visibility = View.GONE
@@ -29,9 +33,9 @@ class ItemViewHolder(private val binding: ItemMinecraftBinding) :
                 }
             })
 
-        binding.root.setOnClickListener{
-            val bottomSheet = ItemDetailBottomSheet(item)
-            bottomSheet.show(fragmentManager, bottomSheet.tag)
+        binding.root.setOnClickListener {
+                val bottomSheet = ItemDetailBottomSheet(item)
+                bottomSheet.show(fragmentManager, bottomSheet.tag)
         }
     }
 }

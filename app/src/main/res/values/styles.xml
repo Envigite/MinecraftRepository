@@ -10,6 +10,7 @@
         <item name="android:textColorHint">#989898</item>
         <item name="android:textStyle">italic</item>
         <item name="android:fontFamily">@font/minecraft_font</item>
+        <item name="android:editTextColor">@android:color/white</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">

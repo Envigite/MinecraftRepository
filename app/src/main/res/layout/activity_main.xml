@@ -6,11 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/animated_background"
+    android:padding="8dp"
     tools:context=".ui.view.MainActivity">
 
     <FrameLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:layout_marginVertical="8dp"
         android:layout_height="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,24 +26,42 @@
             android:contentDescription="@string/title_image"
             android:gravity="center"
             android:src="@drawable/ic_minecraft_title" />
+
     </FrameLayout>
 
-    <SearchView
-        android:id="@+id/svItems"
+    <LinearLayout
+        android:id="@+id/searchAndButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="16dp"
-        android:background="@drawable/ic_fondo_search"
-        android:closeIcon="@drawable/ic_close"
-        android:iconifiedByDefault="false"
-        android:queryHint="@string/search_items"
-        android:searchIcon="@drawable/ic_search"
-        android:theme="@style/CustomSearchView"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/rvMinecraft"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <SearchView
+            android:id="@+id/svItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:background="@drawable/ic_fondo_search"
+            android:closeIcon="@drawable/ic_close"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/search_items"
+            android:searchIcon="@drawable/ic_search"
+            android:theme="@style/CustomSearchView" />
+
+        <ImageButton
+            android:id="@+id/btnNavigate"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/navigate"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_navigation" />
+
+    </LinearLayout>
 
     <com.l4digital.fastscroll.FastScrollRecyclerView
         android:id="@+id/rvMinecraft"
@@ -64,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svItems" />
+        app:layout_constraintTop_toBottomOf="@id/searchAndButton" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -74,6 +94,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svItems" />
+        app:layout_constraintTop_toBottomOf="@id/searchAndButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.envigite.minecraftaplication.ui.view
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.transition.TransitionManager
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -24,8 +26,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ItemViewModel
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: ItemViewModel by viewModels()
     private lateinit var itemAdapter: ItemAdapter
 
     private val constraintSetStart = ConstraintSet()
@@ -62,6 +64,14 @@ class MainActivity : AppCompatActivity() {
         setupSearchView()
         constraintSet()
         clearFocus()
+        navigationCrafting()
+    }
+
+    private fun navigationCrafting() {
+        binding.btnNavigate.setOnClickListener {
+            val intent = Intent(this, CraftingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun clearFocus() {
@@ -131,7 +141,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this)[ItemViewModel::class.java]
         viewModel.itemsLiveData.observe(this) { items ->
             itemAdapter.updateItems(items)
             binding.progressBar.visibility = View.GONE
@@ -146,7 +155,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        itemAdapter = ItemAdapter(emptyList(), supportFragmentManager)
+        itemAdapter = ItemAdapter(emptyList(), supportFragmentManager, ItemAdapter.VIEW_TYPE_1)
         binding.rvMinecraft.adapter = itemAdapter
         binding.rvMinecraft.layoutManager = GridLayoutManager(this, 2)
     }

@@ -1,6 +1,9 @@
 package com.envigite.minecraftaplication.data.network
 
 import com.envigite.minecraftaplication.BuildConfig.API_BASE_URL
+import com.envigite.minecraftaplication.data.database.dao.CraftingDao
+import com.envigite.minecraftaplication.data.repositoy.ApiItemRepository
+import com.envigite.minecraftaplication.domain.repository.ItemRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,5 +45,14 @@ object NetworkModule {
     @Singleton
     fun provideMinecraftApiService(retrofit: Retrofit): MinecraftApiService {
         return retrofit.create(MinecraftApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideItemRepository(
+        apiService: MinecraftApiService,
+        craftingDao: CraftingDao
+    ): ItemRepository {
+        return ApiItemRepository(apiService, craftingDao)
     }
 }

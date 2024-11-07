@@ -1,6 +1,7 @@
 package com.envigite.minecraftaplication.ui.view
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.transition.TransitionManager
@@ -48,11 +49,11 @@ class MainActivity : AppCompatActivity() {
         }
         Thread.sleep(500)
         screenSplash.setKeepOnScreenCondition { false }
-
         initUI()
     }
 
     private fun initUI() {
+        temporaryScreenOrientation()
         initAdapter()
         initViewModel()
         initListeners()
@@ -65,6 +66,10 @@ class MainActivity : AppCompatActivity() {
         constraintSet()
         clearFocus()
         navigationCrafting()
+    }
+
+    private fun temporaryScreenOrientation() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     }
 
     private fun navigationCrafting() {

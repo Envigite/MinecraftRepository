@@ -1,5 +1,6 @@
 package com.envigite.minecraftaplication.ui.view
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.transition.TransitionManager
 import android.view.View
@@ -14,11 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.envigite.minecraftaplication.R
-import com.envigite.minecraftaplication.data.database.entities.CraftingEntity
 import com.envigite.minecraftaplication.databinding.ActivityCraftingBinding
+import com.envigite.minecraftaplication.domain.model.CraftingEntityDomain
 import com.envigite.minecraftaplication.extensions.observeOnce
 import com.envigite.minecraftaplication.ui.adapter.ItemAdapter
 import com.envigite.minecraftaplication.ui.viewmodel.ItemViewModel
@@ -48,14 +48,15 @@ class CraftingActivity : AppCompatActivity() {
             insets
         }
         initUI()
-        observeViewModel()
     }
 
     private fun initUI() {
+        temporaryScreenOrientation()
+        observeViewModel()
+        initListeners()
         loadCraftings()
         initAdapter()
         setupRecyclerView()
-        initListeners()
         constraintSet()
         setupImageButtons()
     }
@@ -64,6 +65,10 @@ class CraftingActivity : AppCompatActivity() {
         setUpCraftingButtons()
         setupSearchView()
         backToMainActivity()
+    }
+
+    private fun temporaryScreenOrientation() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     }
 
     private fun loadCraftings() {
@@ -85,52 +90,34 @@ class CraftingActivity : AppCompatActivity() {
             }
         }
 
-        binding.saveButton.setOnClickListener {
-            promptForCraftingName()
-        }
-
-        binding.loadButton.setOnClickListener {
-            showLoadCraftingDialog()
-        }
-
-        binding.deleteButton.setOnClickListener {
-            showDeleteCraftingDialog()
-        }
+        binding.saveButton.setOnClickListener { promptForCraftingName() }
+        binding.loadButton.setOnClickListener { showLoadCraftingDialog() }
+        binding.deleteButton.setOnClickListener { showDeleteCraftingDialog() }
     }
 
     private fun promptForCraftingName() {
         val input = EditText(this)
-        val dialog = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setTitle("Save crafting")
             .setMessage("Enter a name for the craft:")
             .setView(input)
             .setPositiveButton("Save") { _, _ ->
                 val craftingName = input.text.toString()
                 if (craftingName.isNotBlank()) {
-                    saveCrafting(craftingName)
+                    val images = imageButtons.map { it.tag?.toString() ?: "" }
+                    viewModel.saveCrafting(CraftingEntityDomain(name = craftingName, slots = images))
+                    Toast.makeText(this, "Crafting Saved", Toast.LENGTH_SHORT).show()
+                    resetImageButtons()
                 } else {
-                    Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("Cancel", null)
             .create()
-        dialog.show()
+            .show()
     }
 
-    private fun saveCrafting(name: String) {
-        val images = imageButtons.map { button ->
-            button.tag?.toString() ?: ""
-        }
-
-        val craftingEntity = CraftingEntity(
-            name = name,
-            slots = images
-        )
-
-        viewModel.saveCrafting(craftingEntity)
-        Toast.makeText(this, "Crafting Saved", Toast.LENGTH_SHORT).show()
-
+    private fun resetImageButtons() {
         imageButtons.forEach { button ->
             button.setImageResource(0)
             button.tag = null
@@ -154,7 +141,7 @@ class CraftingActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadCrafting(crafting: CraftingEntity) {
+    private fun loadCrafting(crafting: CraftingEntityDomain) {
         crafting.slots.forEachIndexed { index, imageUrl ->
             if (imageUrl.isNotEmpty()) {
                 Picasso.get()

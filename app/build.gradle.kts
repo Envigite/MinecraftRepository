@@ -69,11 +69,11 @@ dependencies {
         implementation(libs.hilt.android)
         kapt(libs.hilt.compiler)
         implementation(libs.picasso)
-        implementation("io.github.l4digital:fastscroll:2.1.0")
-        implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-        implementation("androidx.core:core-splashscreen:1.0.1")
-        implementation("androidx.room:room-runtime:2.6.1")
-        implementation("androidx.room:room-ktx:2.5.0")
-        kapt("androidx.room:room-compiler:2.6.1")
+        implementation(libs.fastscroll)
+        implementation(libs.logging.interceptor)
+        implementation(libs.androidx.core.splashscreen)
+        implementation(libs.androidx.room.runtime)
+        implementation(libs.androidx.room.ktx)
+        kapt(libs.androidx.room.compiler)
     }
 }
